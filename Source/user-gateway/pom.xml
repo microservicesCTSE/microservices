@@ -10,9 +10,9 @@
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.pos</groupId>
-	<artifactId>inventory-gateway</artifactId>
+	<artifactId>shopping-gateway</artifactId>
 	<version>1.0</version>
-	<name>inventory-gateway</name>
+	<name>shopping-gateway</name>
 	<description>Gateway project for Spring Boot</description>
 
 	<properties>
