@@ -1,0 +1,155 @@
+app:
+  name: inventory
+#database
+spring:
+  datasource:
+    url: jdbc:mysql://10.20.15.247:3306/inventory?useSSL=false
+    driver-class-name: com.mysql.jdbc.Driver
+    username: qauseralgo
+    password: system@2020
+
+    tomcat:
+      initial-size: 10
+      max-wait: 20000
+      max-active: 50
+      max-idle: 15
+      min-idle: 5
+    #hikari:
+      #connection-timeout: 120000
+      #idle-timeout: 60000
+      #max-lifetime: 120000
+      #minimum-idle: 2
+      #maximum-pool-size: 4   
+  jpa:
+    properties:
+      hibernate.dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+    show-sql: true
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: 100MB
+      max-request-size: 100MB      
+        
+entitymanager:
+  packagesToScan: com.pos
+
+eureka:
+  instance:
+    hostname: ${EUREKA_SERVICE:127.0.0.1}
+  client:
+    registerWithEureka: true
+    fetchRegistry: true
+    #    eureka-service-url-poll-interval-seconds: 0
+    serviceUrl:
+      defaultZone: http://${eureka.instance.hostname}:7000/eureka/
+    
+feign:
+  client:
+    config:
+      default:
+        connectTimeout: 160000000
+        readTimeout: 160000000
+        
+        
+#to skip eureka        
+#communication-service:
+  #ribbon:
+    #NIWSServerListClassName: com.netflix.loadbalancer.ConfigurationBasedServerList
+    #listOfServers: http://localhost:6002
+
+inventory-identity:
+  ribbon:
+    NIWSServerListClassName: com.netflix.loadbalancer.ConfigurationBasedServerList
+    listOfServers: http://identity-service:5003
+    
+    
+inventory-reports:
+  ribbon:
+    NIWSServerListClassName: com.netflix.loadbalancer.ConfigurationBasedServerList
+    listOfServers: http://reports-service:5004
+
+stock-service:
+  ribbon:
+    NIWSServerListClassName: com.netflix.loadbalancer.ConfigurationBasedServerList
+    listOfServers: http://stock-service:6006
+    
+## WooCommerce
+WooCommerce:
+  services:
+    url: "http://inventory.codelantic-staging.club"
+    logPath: /opt/inventory/wooCommerce
+    stock: "http://10.20.15.100:31381"
+  baseUrl: "http://inventory.codelantic-staging.club"    
+     
+      
+email:
+  defaultfromaddress: codelanticpos@gmail.com
+  hostaddress: smtp.gmail.com
+  username: codelanticpos@gmail.com
+  password: Pos_Pa$$w0rd
+  port: 465
+  smtpstarttlsenable:
+  bccMail: codelanticpos@gmail.com
+  apikey: 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
+  fromName: pos Notifications
+  replyToAddress: cs@algorial.pos
+  replyName: SpotOn Customer Service
+#  
+#email:
+  #defaultfromaddress: noreply@spoton.money
+  #hostaddress: secure.emailsrvr.com
+  #username: noreply@spoton.money
+  #password: $£51T33nn4!A
+  #port: 465
+  #smtpstarttlsenable:
+  #bccMail: bankingcoreprod@gmail.com
+
+  
+
+userregistration:
+  verificationtimeout: 48
+  url: http://localhost:6060
+  loginurl: http://localhost:4200
+  agentloginurl: http://localhost:4200
+  agentCustomerloginurl: http://localhost:4200
+#1dayinhours
+
+2fa:
+  verificationtimeout: 5
+
+jwt:
+  secret: $SqQE=YFFGFHA&RF3__=rzT2*H98M#e!j&ef=v%x?@@_$%_ts%
+
+## S3
+s3:
+  bucketnameprefix: dev
+  awsenabled: false
+  fileupload:
+    idenity : /opt/identityupload/
+    presignedUrlTimeLimit : 5
+#    agentdocuments: /opt/agentdocumentsupload/
+    uploadLocation: /opt/uploadlocation/zip/
+#    agentSenderImages: /opt/agentSenderImages/
+#    agentSenderIdentity: /opt/identityupload/agentSenderIdentity/
+#    agentCooperatedocuments: /opt/agentCooperatedocumentsupload/
+#    
+## reset password
+resetpassword:
+  url: http://localhost:4200/
+
+    
+##auth check
+authcheck: true
+
+ftp:
+  isEnabled: false
+  host: "10.15.26.200"
+  port: "22"
+  user: "root"
+  password: "keys/password.txt"
+  privateKey: "keys/Ionos_qa.ppk"
+  privateKeyPem: "keys/Ionos_qa.pem"
+  
+supplier:
+  refCode : "sup_"  
+

@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: identity-service
+  profiles:
+
+    active: "ionos-qa"
+
+    
+server:
+  port: 5003
+  
+logging:
+  file:
+    path: "./log"

@@ -1,0 +1,38 @@
+app:
+  name: identity-service
+
+# database
+spring:
+  datasource:
+    url: jdbc:mysql://pos-db-qa.cizxmkn47xsf.eu-west-2.rds.amazonaws.com:3306/banking_core?useSSL=false
+    driver-class-name: com.mysql.jdbc.Driver
+    username: bankingcore_db
+    password: premen123
+  jpa:
+    properties:
+      hibernate.dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+    show-sql: true
+
+entitymanager:
+  packagesToScan: com.pos
+  
+lockuser:
+  invalidcount: 3
+  
+eureka:
+  client:
+    registerWithEureka: true
+    fetchRegistry: true
+    #    eureka-service-url-poll-interval-seconds: 0
+    serviceUrl:
+      defaultZone: http://localhost:7000/eureka/
+
+feign:
+  client:
+    config:
+      default:
+        connectTimeout: 160000000
+        readTimeout: 160000000  
+
+jwt:
+  secret: $SqQE=YFFGFHA&RF3__=rzT2*H98M#e!j&ef=v%x?@@_$%_ts%

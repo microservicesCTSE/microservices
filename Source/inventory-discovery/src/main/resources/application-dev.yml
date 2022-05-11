@@ -1,0 +1,50 @@
+app:
+  name: discovery-service
+  
+spring:
+  cloud:
+    gateway:
+      default-filters:
+        - DedupeResponseHeader=Access-Control-Allow-Origin Access-Control-Allow-Credentials, RETAIN_UNIQUE
+      globalcors:
+        add-to-simple-url-handler-mapping: true
+        cors-configurations:
+          '[/**]':
+            allowed-origins: "*"
+            allowed-methods: "*"
+            allowed-headers: "*"
+            allow-credentials: true
+            exposedHeaders:
+                - "Access-Control-Allow-Origin"
+                - "Access-Control-Allow-Methods"
+                - "Access-Control-Max-Age"
+                - "Access-Control-Allow-Headers"
+                - "Cache-Control"
+                - "Authorization"
+                - "Content-Type"
+      discovery:
+        locator:
+          enabled: true
+      routes:
+#        - id: communication-service
+#          uri: http://localhost:6002/
+#          predicates:
+#            -Path=/v1/communication/**
+
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    registerWithEureka: true
+    fetchRegistry: true
+    #    eureka-service-url-poll-interval-seconds: 0
+    serviceUrl:
+      defaultZone: http://${eureka.instance.hostname}:7000/eureka/
+
+
+feign:
+  client:
+    config:
+      default:
+        connectTimeout: 160000000
+        readTimeout: 160000000

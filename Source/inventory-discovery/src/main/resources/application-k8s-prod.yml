@@ -1,0 +1,65 @@
+app:
+  name: discovery-service
+
+spring:
+  cloud:
+    gateway:
+      default-filters:
+        - DedupeResponseHeader=Access-Control-Allow-Origin Access-Control-Allow-Credentials, RETAIN_UNIQUE
+      globalcors:
+        add-to-simple-url-handler-mapping: true
+        cors-configurations:
+          '[/**]':
+            allowed-origins:
+              - "http://77.68.66.62"
+              - "http://77.68.66.64"
+              - "http://77.68.66.55"
+            allowed-methods:
+              - "GET"
+              - "POST"
+              - "PUT"
+              - "PATCH"
+              - "OPTIONS"
+              - "DELETE"
+            allowed-headers: "*"              
+            allow-credentials: true
+            exposedHeaders:
+              - "Access-Control-Allow-Origin"
+              - "Access-Control-Allow-Methods"
+              - "Access-Control-Max-Age"
+              - "Access-Control-Allow-Headers"
+              - "Cache-Control"
+              - "Authorization"
+              - "Content-Type"
+      discovery:
+        locator:
+          enabled: true
+      routes:
+        - id: pos-service
+          uri: http://pos-service:6060/
+          predicates:
+            - Path=/pos/**
+          filters:
+            - RewritePath=/pos/(?<RID>.*), /$\{RID}
+        - id: pos-identity
+          uri: http://identity-service:6003/
+          predicates:
+            - Path=/v1/auth/**
+
+eureka:
+  instance:
+    hostname: ${EUREKA_SERVICE}
+  client:
+    registerWithEureka: true
+    fetchRegistry: true
+    #    eureka-service-url-poll-interval-seconds: 0
+    serviceUrl:
+      defaultZone: http://${eureka.instance.hostname}:7000/eureka/
+
+
+feign:
+  client:
+    config:
+      default:
+        connectTimeout: 160000000
+        readTimeout: 160000000

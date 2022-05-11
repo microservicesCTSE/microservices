@@ -1,0 +1,47 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: poscore-web-service-deployment
+spec:
+  selector:
+    matchLabels:
+      app: poscore-web-service
+      tier: service
+      track: stable
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: poscore-web-service
+        tier: service
+        track: stable
+    spec:
+      containers:
+        - name: poscore-web-service
+          image: "itaffixdocker/inventory-poscore-web-service:1.0"
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 5000
+          env:
+            - name: EUREKA_ENDPOINT
+              value: gateway-service
+            - name: EUREKA_SERVICE
+              value: gateway-service.default.svc.cluster.local
+      imagePullSecrets:
+        - name: jencred
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: poscore-web-service
+spec:
+  selector:
+    app: poscore-web-service
+    tier: service
+  ports:
+    - protocol: TCP
+      port: 5000
+      targetPort: 5000
+      nodePort: 31862
+  type: NodePort

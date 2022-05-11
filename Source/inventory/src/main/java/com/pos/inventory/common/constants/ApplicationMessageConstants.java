@@ -1,0 +1,58 @@
+package com.pos.inventory.common.constants;
+
+public interface ApplicationMessageConstants {
+	public interface ServiceErrorMessages {
+		String ERR_RETRIEVE_ALL_PRODUCT_DETAILS = "err.retrieve.all.product.details";
+		String EX_RETRIEVE_ALL_PRODUCT_DETAILS = "ex.retrieve.all.product.details";
+		String ERR_SAVE_PRODUCTS = "err.save.products";
+		String EX_SAVE_PRODUCTS = "ex.save.products";
+		String ERR_UPDATE_PRODUCT_DETAILS = "err.update.product.details";
+		String EX_UPDATE_PRODUCT_DETAILS = "ex.update.product.details";
+		String ERR_UPDATE_STATUS_PRODUCT_DETAILS = "err.update.status.product.details";
+		String EX_UPDATE_STATUS_PRODUCT_DETAILS = "ex.update.status.product.details";
+		String EX_RETRIEVE_PRODUCT_STOCK_REPORT_EXCEL_BY_CRITERIA = "err.retrieve.product.stock.report.excel.by.criteria";
+		String ERR_RETRIEVE_PRODUCT_STOCK_REPORT_EXCEL_BY_CRITERIA = "ex.retrieve.product.stock.report.excel.by.criteria";
+		String ERR_GET_USER_DETAILS = "err.get.user.details";
+		String EX_GET_USER_DETAILS = "ex.get.user.details";
+		String ERR_RETRIEVE_ALL_BARCODE_DETAILS = "err.retrieve.all.barcode.details";
+		String EX_RETRIEVE_ALL_BARCODE_DETAILS = "ex.retrieve.all.barcode.details";
+		String ERR_RETRIEVE_EXSIT_BARCODE_DETAILS = "err.retrieve.exist.barcode.details";
+		String EX_RETRIEVE_EXSIT_BARCODE_DETAILS = "ex.retrieve.exist.barcode.details";
+		String ERR_SAVE_BARCODE = "err.save.barcode";
+		String EX_SAVE_BARCODE = "ex.save.barcode";
+		String ERR_UPDATE_BARCODE = "err.update.barcode";
+		String EX_UPDATE_BARCODE = "ex.update.barcode";
+		String ERR_UPDATE_BARCODE_STATUS = "err.update.barcode.status";
+		String EX_UPDATE_BARCODE_STATUS = "ex.update.barcode.status";
+		String ERR_RETRIEVE_ALL_BRANCH_DETAILS = "err.retrieve.all.branch.details";
+		String EX_RETRIEVE_ALL_BRANCH_DETAILS = "ex.retrieve.all.branch.details";
+		String ERR_SAVE_BRANCH = "err.save.branch";
+		String EX_SAVE_BRANCH = "ex.save.branch";
+		String ERR_RETRIEVE_ALL_BRAND_DETAILS = "err.retrieve.all.brand.details";
+		String EX_RETRIEVE_ALL_BRAND_DETAILS = "ex.retrieve.all.brand.details";
+		String ERR_SAVE_BRAND = "err.save.brand";
+		String EX_SAVE_BRAND = "ex.save.brand";
+		String ERR_RETRIEVE_ALL_CATEGORY_DETAILS = "err.retrieve.all.category.details";
+		String EX_RETRIEVE_ALL_CATEGORY_DETAILS = "ex.retrieve.all.category.details";
+		String ERR_UPDATE_CATEGORY_DETAILS_BY_BRAND_ID = "err.update.category.details.by.brand.id";
+		String EX_UPDATE_CATEGORY_DETAILS_BY_BRAND_ID = "ex.update.category.details.by.brand.id";
+		String ERR_SAVE_CATEGORY = "err.save.category";
+		String EX_SAVE_CATEGORY = "ex.save.category";
+		String ERR_RETRIEVE_ALL_CURRENCY_DETAILS = "err.retrieve.all.currency.details";
+		String EX_RETRIEVE_ALL_CURRENCY_DETAILS = "ex.retrieve.all.currency.details";
+		String ERR_SAVE_CURRENCY = "err.save.currency";
+		String EX_SAVE_CURRENCY = "ex.save.currency";
+		String ERR_RETRIEVE_ALL_MEASUREMENT_UNIT_DETAILS = "err.retrieve.all.measurement.unit.details";
+		String EX_RETRIEVE_ALL_MEASUREMENT_UNIT_DETAILS = "ex.retrieve.all.measurement.unit.details";
+		String ERR_SAVE_MEASUREMENT_UNIT_DETAILS = "err.save.measurement.unit.details";
+		String EX_SAVE_MEASUREMENT_UNIT_DETAILS = "ex.save.measurement.unit.details";
+		String ERR_UPDATE_STATUS_MEASUREMENT_UNIT_DETAILS = "err.update.status.measurement.unit.details";
+		String EX_UPDATE_STATUS_MEASUREMENT_UNIT_DETAILS = "ex.update.status.measurement.unit.details";
+		String ERR_RETRIEVE_ALL_SUBCATEGORY_DETAILS = "err.retrieve.all.subcategory.details";
+		String EX_RETRIEVE_ALL_SUBCATEGORY_DETAILS = "ex.retrieve.all.subcategory.details";
+		String ERR_SAVE_SUB_CATEGORY = "err.save.sub.category";
+		String EX_SAVE_SUB_CATEGORY = "ex.save.sub.category";
+		String ERR_UPDATE_MEASUREMENT_UNIT_DETAILS = "err.update.measurement.unit.details";
+		String EX_UPDATE_MEASUREMENT_UNIT_DETAILS = "ex.update.measurement.unit.details";
+	}
+}

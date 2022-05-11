@@ -1,0 +1,47 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: discovery-service-deployment
+spec:
+  selector:
+    matchLabels:
+      app: discovery-service
+      tier: service
+      track: stable
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: discovery-service
+        tier: service
+        track: stable
+    spec:
+      containers:
+        - name: discovery-service
+          image: "itaffixdocker/inventory-discovery-service:1.0"
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 5001
+          env:
+            - name: EUREKA_ENDPOINT
+              value: gateway-service
+            - name: EUREKA_SERVICE
+              value: gateway-service.default.svc.cluster.local
+      imagePullSecrets:
+        - name: jencred
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: discovery-service
+spec:
+  selector:
+    app: discovery-service
+    tier: service
+  ports:
+    - protocol: TCP
+      port: 5001
+      targetPort: 5001
+      nodePort: 30868
+  type: NodePort

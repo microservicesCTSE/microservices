@@ -1,0 +1,47 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: identity-service-deployment
+spec:
+  selector:
+    matchLabels:
+      app: identity-service
+      tier: service
+      track: stable
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: identity-service
+        tier: service
+        track: stable
+    spec:
+      containers:
+        - name: identity-service
+          image: "itaffixdocker/inventory-identity-service:1.0"
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 5003
+          env:
+            - name: EUREKA_ENDPOINT
+              value: gateway-service
+            - name: EUREKA_SERVICE
+              value: gateway-service.default.svc.cluster.local
+      imagePullSecrets:
+        - name: jencred
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: identity-service
+spec:
+  selector:
+    app: identity-service
+    tier: service
+  ports:
+    - protocol: TCP
+      port: 5003
+      targetPort: 5003
+      nodePort: 31049
+  type: NodePort

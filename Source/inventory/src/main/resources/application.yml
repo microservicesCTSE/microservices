@@ -1,0 +1,13 @@
+spring:
+  application:
+    name: inventory-service
+  profiles:
+    active: "ionos-qa"
+
+
+server:
+  port: 5000
+
+logging:
+  file:
+    path: "log"

@@ -1,0 +1,26 @@
+app:
+  name: gateway-service
+
+server:
+  port: 5002
+#  servlet:
+#    context-path: /myeureka
+
+
+eureka:
+  client:
+    registerWithEureka: false
+    fetchRegistry: false
+    service-url:
+      default-zone: http://localhost:7001/eureka/
+  instance:
+    hostname: localhost
+#    environment: test
+  enableSelfPreservation: false
+
+#logging:
+#  level:
+#    com:
+#      netflix:
+#        eureka: ON
+#        discovery: ON

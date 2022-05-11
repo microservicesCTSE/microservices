@@ -1,0 +1,20 @@
+app:
+  name: gateway-service
+
+server:
+  port: 7000
+#  servlet:
+#    context-path: /myeureka
+
+
+eureka:
+  instance:
+    hostname: ${EUREKA_SERVICE:127.0.0.1}
+    #prefer-ip-address: true
+  client:
+    registerWithEureka: false
+    fetchRegistry: false
+    service-url:
+      default-zone: http://${eureka.instance.hostname}:${server.port}/eureka/
+  #    environment: test
+  enableSelfPreservation: false

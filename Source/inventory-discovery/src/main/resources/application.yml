@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: discovery-service
+  profiles:
+    active: "ionos-qa"
+            
+server:
+  port: 5001
+
+logging:
+  file:
+    path: "./log"
+    
+          

@@ -1,0 +1,48 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: gateway-deployment
+spec:
+  selector:
+    matchLabels:
+      app: gateway-service
+      tier: service
+      track: stable
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: gateway-service
+        tier: service
+        track: stable
+    spec:
+      containers:
+        - name: gateway-service
+          image: "itaffixdocker/inventory-gateway-service:1.0"
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 7000
+          env:
+            - name: EUREKA_ENDPOINT
+              value: gateway-service
+            - name: EUREKA_SERVICE
+              value: gateway-service.default.svc.cluster.local
+      imagePullSecrets:
+        - name: jencred
+
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: gateway-service
+spec:
+  selector:
+    app: gateway-service
+    tier: service
+  ports:
+    - protocol: TCP
+      port: 7000
+      targetPort: 7000
+      nodePort: 30760
+  type: NodePort
